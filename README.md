@@ -26,13 +26,13 @@ handleClick funtion.
 
 Here is my handleClick function
 
-> ` handleClick() { fetch('https://api.chucknorris.io/jokes/random').then((data) => data.json().then((jokes) => this.setState({ joke: jokes.value })) ); }`
+`handleClick() { fetch('https://api.chucknorris.io/jokes/random').then((data) => data.json().then((jokes) => this.setState({ joke: jokes.value })) ); }`
 
 I kept getting a setState not defined error when calling handleClick like this.
 When
 
-> `onClick={this.handleClick}`
+`onClick={this.handleClick}`
 
 The solution was to add the bind method to it
 
-> `onClick={this.handleClick.bind(this)}`
+`onClick={this.handleClick.bind(this)}`

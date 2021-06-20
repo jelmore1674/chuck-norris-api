@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Chuck Norris Joke App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple app using the
+[Chuck Norris Joke API](https://api.chucknorris.io/jokes/random). It displays a
+random joke on load and when you click the button to change the joke.
 
-## Available Scripts
+## Tech Behind the app
 
-In the project directory, you can run:
+For this app I used React to create the App. Now, there is only one component.
+Which, I didn't have to use React; however, I wanted to practice using CSS
+modules. Now, I could break this app down to a few different components. The
+App, which everything would be put into. I could have created a separate header
+component, but I didn't feel the need to do that since this is mostly a static
+app. I could have broken the button into it's own component, but I am not
+reusing it, so I just put everything into a JokeBody component. Which, I used
+CSS modules to create the CSS. I am using the fetch.then.then method. Which I
+could have easily used to async await method, but this is a real simple app, so
+I didn't feel the need to.
 
-### `npm start`
+### Issues I ran into...
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+While creating this app, I did have a few problems. One being able to change the
+state onClick. When I created my on click function I kept getting an error.
+After some research I found a simple solution. I had to bind the _this_ to the
+handleClick funtion.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Here is my handleClick function
 
-### `npm test`
+` handleClick() { fetch('https://api.chucknorris.io/jokes/random').then((data) => data.json().then((jokes) => this.setState({ joke: jokes.value })) ); }`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I kept getting a setState not defined error when calling handleClick like this.
+When
 
-### `npm run build`
+`onClick={this.handleClick}`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The solution was to add the bind method to it
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+`onClick={this.handleClick.bind(this)}`
